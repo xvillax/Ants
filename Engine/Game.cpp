@@ -21,11 +21,25 @@
 #include "MainWindow.h"
 #include "Game.h"
 
+
+
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd )
+	gfx( wnd ),
+	xDist(0, 799),
+	yDist(0, 599)
+
+
 {
+	for (int i = 0; i < sizeof(antArray); i++)
+	{
+		if (i == sizeof(antArray) / 2)
+			antArray[i].UpdateAnt(xDist(rng), yDist(rng), Colors::Cyan); // make ants half RED and half Blue....
+		else
+			antArray[i].UpdateAnt(xDist(rng), yDist(rng), Colors::Red);
+	 }
+
 }
 
 void Game::Go()
