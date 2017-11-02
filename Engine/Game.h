@@ -23,6 +23,9 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
+#include "Ant.h"
+#include <random>
+#include "Colors.h"
 
 class Game
 {
@@ -40,6 +43,12 @@ private:
 private:
 	MainWindow& wnd;
 	Graphics gfx;
+	std::random_device rd;
+	std::mt19937 rng;
+	std::uniform_int_distribution<int> xDist;
+	std::uniform_int_distribution<int> yDist;
+	static constexpr int max = 50;
+	Ant antArray[max];
 	/********************************/
 	/*  User Variables              */
 	/********************************/
