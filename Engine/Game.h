@@ -47,6 +47,7 @@ private:
 	std::mt19937 rng;
 	std::uniform_int_distribution<int> xDist;
 	std::uniform_int_distribution<int> yDist;
+	std::uniform_int_distribution<int> direction;
 	static constexpr int max = 50;
 	Ant antArray[max];
 	/********************************/

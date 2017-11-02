@@ -28,16 +28,17 @@ Game::Game( MainWindow& wnd )
 	wnd( wnd ),
 	gfx( wnd ),
 	xDist(0, 799),
-	yDist(0, 599)
+	yDist(0, 599),
+	direction(0,3)
 
 
 {
-	for (int i = 0; i < sizeof(antArray); i++)
+	for (int i = 0; i < max; i++)
 	{
-		if (i == sizeof(antArray) / 2)
-			antArray[i].UpdateAnt(xDist(rng), yDist(rng), Colors::Cyan); // make ants half RED and half Blue....
+		if (i < (max / 2))
+			antArray[i].AntInit(xDist(rng), yDist(rng), Colors::Red); // make ants half RED and half Blue....
 		else
-			antArray[i].UpdateAnt(xDist(rng), yDist(rng), Colors::Red);
+			antArray[i].AntInit(xDist(rng), yDist(rng), Colors::Cyan);
 	 }
 
 }
