@@ -60,5 +60,8 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
+	for (int i = 0; i < max; i++) {
+		antArray[i].Draw(gfx);
+	}
 
 }
