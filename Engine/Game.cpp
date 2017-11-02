@@ -39,7 +39,9 @@ Game::Game( MainWindow& wnd )
 			antArray[i].AntInit(xDist(rng), yDist(rng), Colors::Red); // make ants half RED and half Blue....
 		else
 			antArray[i].AntInit(xDist(rng), yDist(rng), Colors::Cyan);
+		antArray[i].setDirection(direction(rng)); // set the ants initial direction
 	 }
+	
 
 }
 
@@ -55,13 +57,17 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	for (int i = 0; i < max; i++) {
+		antArray[i].setDirection(direction(rng));		//set direction the ant will move next
+		antArray[i].UpdateAnt();
+	}
+
 	
 }
 
 void Game::ComposeFrame()
 {
 	for (int i = 0; i < max; i++) {
-		antArray[i].Draw(gfx);
+		antArray[i].Draw(gfx);			//Draw the Ants on the screen
 	}
-
 }

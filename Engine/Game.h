@@ -50,6 +50,7 @@ private:
 	std::uniform_int_distribution<int> direction;
 	static constexpr int max = 50;
 	Ant antArray[max];
+	Ant::Direction newD;
 	/********************************/
 	/*  User Variables              */
 	/********************************/
