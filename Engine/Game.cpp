@@ -41,7 +41,9 @@ Game::Game( MainWindow& wnd )
 			antArray[i].AntInit(xDist(rng), yDist(rng), Colors::Cyan);
 		antArray[i].setDirection(direction(rng)); // set the ants initial direction
 	 }
-	
+	for (int y = 0; y < Graphics::ScreenHeight; y++)
+		for (int x = 0; x < Graphics::ScreenWidth; x++)
+			gfx.PutPixel(x, y, Colors::Black);
 
 }
 
@@ -57,9 +59,37 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	Color c;
+	bool Moved = false;
+
 	for (int i = 0; i < max; i++) {
-		antArray[i].setDirection(direction(rng));		//set direction the ant will move next
-		antArray[i].UpdateAnt();
+		Moved = false;
+		//loop till a valid move is performed
+		while (!Moved) {
+
+			antArray[i].setDirection(direction(rng));		//set direction the ant will move next
+			c = antArray[i].getPixelColor(gfx, antArray[i]); //get the color of the square the ant wants to move too
+
+			//Test to see if the ant can move or not
+			if (c == Colors::Cyan || c == Colors::Black && antArray[i].GetColor() == Colors::Cyan)// if its a valid move for a blue ant
+				{
+					antArray[i].UpdateAnt();
+					Moved = true;
+				}
+			else
+			if (c == Colors::Red || c == Colors::Black && antArray[i].GetColor() == Colors::Red)// if its a valid move for a Red ant
+				{
+					antArray[i].UpdateAnt();
+					Moved = true;
+				}
+			else
+			if (antArray[i].GetColor() == Colors::Magenta)// if its a super ant just move
+				{
+					antArray[i].UpdateAnt();
+					Moved = true;
+				}
+
+		}
 	}
 
 	
@@ -67,6 +97,7 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
+	
 	for (int i = 0; i < max; i++) {
 		antArray[i].Draw(gfx);			//Draw the Ants on the screen
 	}

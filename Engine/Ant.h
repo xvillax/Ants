@@ -18,6 +18,8 @@ public:
 	void UpdateAnt();
 	void Draw(Graphics& gfx) const; 
 	void setDirection(int d);
+	Color GetColor() const;
+	Color getPixelColor(Graphics& gfx, Ant& ant) const;
 private:
     
 	int antX;
