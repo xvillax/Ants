@@ -27,6 +27,7 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
+	rng(rd()),
 	xDist(0, 799),
 	yDist(0, 599),
 	direction(0,3)
@@ -71,13 +72,13 @@ void Game::UpdateModel()
 			c = antArray[i].getPixelColor(gfx, antArray[i]); //get the color of the square the ant wants to move too
 
 			//Test to see if the ant can move or not
-			if (c == Colors::Cyan || c == Colors::Black && antArray[i].GetColor() == Colors::Cyan)// if its a valid move for a blue ant
+			if ( c != Colors::Red && antArray[i].GetColor() == Colors::Cyan)
 				{
 					antArray[i].UpdateAnt();
 					Moved = true;
 				}
 			else
-			if (c == Colors::Red || c == Colors::Black && antArray[i].GetColor() == Colors::Red)// if its a valid move for a Red ant
+			if (c != Colors::Cyan && antArray[i].GetColor() == Colors::Red)// if its a valid move for a Red ant
 				{
 					antArray[i].UpdateAnt();
 					Moved = true;
@@ -88,11 +89,9 @@ void Game::UpdateModel()
 					antArray[i].UpdateAnt();
 					Moved = true;
 				}
-
-		}
-	}
-
-	
+		}//end while
+		//if(antArray[i].isSuperAnt(antArray[i], antArray[i+1]))
+	}//end for
 }
 
 void Game::ComposeFrame()

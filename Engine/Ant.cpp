@@ -12,7 +12,6 @@ void Ant::UpdateAnt()
 {
 	if (antDirection == Ant::Direction::LEFT)
 	{
-		// vove ant to the left
 		if(antX > 0)
 			antX--;
 	}
@@ -51,40 +50,50 @@ Color Ant::GetColor() const
 Color Ant::getPixelColor(Graphics& gfx,Ant& ant) const
 {
 	Color c;
-	switch (Ant::antDirection) {
+	switch (ant.antDirection) {
 		case 0:
 		{
-			if(antX > 0)
+			if(ant.antX > 0)
 			{ 
-				c = gfx.GetPixel(antX - 1, antY);
+				c = gfx.GetPixel(ant.antX -1 , ant.antY);
+				return c;
 			}
 			
 			break;
 		}
 		case 1:
 		{
-			if (antX < gfx.ScreenWidth-1)
+			if (ant.antX < gfx.ScreenWidth-1)
 			{
-				c = gfx.GetPixel(antX + 1, antY);
+				c = gfx.GetPixel(ant.antX +1 , ant.antY);
+				return c;
 			}
 			break;
 		}
 		case 2:
 		{
-			if (antY > 0)
+			if (ant.antY > 0)
 			{
-				c = gfx.GetPixel(antX, antY - 1); 
+				c = gfx.GetPixel(antX, ant.antY -1 );
+				return c;
 			}
 			break;
 		}
 		case 3:
 		{
-			if (antY < gfx.ScreenHeight-1)
+			if (ant.antY < gfx.ScreenHeight-1)
 			{
-				c = gfx.GetPixel(antX, antY + 1);
+				c = gfx.GetPixel(antX, ant.antY +1 );
+				return c;
 			}
 			break;
 		}
 	}
-	return c;
+	
+}
+
+bool Ant::isSuperAnt(Ant & antA, Ant & antB) const
+{
+	
+	return false;
 }
