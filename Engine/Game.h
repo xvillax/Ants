@@ -48,7 +48,7 @@ private:
 	std::uniform_int_distribution<int> xDist;
 	std::uniform_int_distribution<int> yDist;
 	std::uniform_int_distribution<int> direction;
-	static constexpr int max = 400;
+	static constexpr int max = 800;
 	Ant antArray[max];
 	Ant::Direction newD;
 	/********************************/
