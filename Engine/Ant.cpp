@@ -92,8 +92,15 @@ Color Ant::getPixelColor(Graphics& gfx,Ant& ant) const
 	
 }
 
-bool Ant::isSuperAnt(Ant & antA, Ant & antB) const
+void Ant::isSuperAnt( Ant & antA,  Ant & antB, int size) 
 {
-	
-	return false;
+	Color c = Colors::Magenta;
+	for(int i = 0; i < size; i++)
+	{								//are tow ants on the same square
+		if (antA.antX == antB.antX && antA.antY == antB.antY)
+		{
+	        antA.antColor = c;
+			antB.antColor = c;
+		}
+	}
 }

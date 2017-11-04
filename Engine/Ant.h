@@ -20,7 +20,7 @@ public:
 	void setDirection(int d);
 	Color GetColor() const;
 	Color getPixelColor(Graphics& gfx, Ant& ant) const;
-	bool isSuperAnt(Ant& antA, Ant& antB) const;
+	void isSuperAnt( Ant & antA, Ant & antB, int size);
 private:
     
 	int antX;

@@ -62,35 +62,43 @@ void Game::UpdateModel()
 {
 	Color c;
 	bool Moved = false;
+	int count = 0;
 
 	for (int i = 0; i < max; i++) {
 		Moved = false;
+		count = 0;
+		antArray[i].isSuperAnt(antArray[i], antArray[i + 1], max);
 		//loop till a valid move is performed
 		while (!Moved) {
-
-			antArray[i].setDirection(direction(rng));		//set direction the ant will move next
+			//set direction the ant will move next
+			antArray[i].setDirection(direction(rng));
+			count++; 
 			c = antArray[i].getPixelColor(gfx, antArray[i]); //get the color of the square the ant wants to move too
-
+			if (count >= 3) {
+				Moved = true;
+				count = 0;
+			}
+				
 			//Test to see if the ant can move or not
-			if ( c != Colors::Red && antArray[i].GetColor() == Colors::Cyan)
+			if ( (c != Colors::Red && c != Colors::Magenta) && antArray[i].GetColor() == Colors::Cyan)
 				{
 					antArray[i].UpdateAnt();
 					Moved = true;
 				}
 			else
-			if (c != Colors::Cyan && antArray[i].GetColor() == Colors::Red)// if its a valid move for a Red ant
+			if ((c != Colors::Cyan && c != Colors::Magenta) && antArray[i].GetColor() == Colors::Red)// if its a valid move for a Red ant
 				{
 					antArray[i].UpdateAnt();
 					Moved = true;
 				}
-			else
+			//else
 			if (antArray[i].GetColor() == Colors::Magenta)// if its a super ant just move
 				{
 					antArray[i].UpdateAnt();
 					Moved = true;
 				}
 		}//end while
-		//if(antArray[i].isSuperAnt(antArray[i], antArray[i+1]))
+		
 	}//end for
 }
 
